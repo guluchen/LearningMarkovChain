@@ -8,7 +8,7 @@ repositories {
 sourceSets {
 	main {
         java {
-            srcDir = ["src/FFAlearner"]
+            srcDirs = ["src/FFAlearner"]
         }
     }
     test {
