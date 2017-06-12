@@ -8,5 +8,5 @@ script:
   - gradle jacocoTestReport
   
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -s ./build/reports/jacoco/test -s ./build/reports/tests/test
+  - bash <(curl -s https://codecov.io/bash) -s ./build/reports/jacoco/test
   
