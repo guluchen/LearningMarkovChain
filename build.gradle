@@ -19,7 +19,7 @@ sourceSets {
     }
     test {
         java {
-            srcDirs = ["src/FFAlearner/Test"]
+            srcDirs = ["test"]
         }
     }
 }

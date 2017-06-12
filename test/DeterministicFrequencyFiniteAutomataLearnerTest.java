@@ -1,4 +1,4 @@
-package FFAlearner.Test;
+package Test;
 
 /**
 *

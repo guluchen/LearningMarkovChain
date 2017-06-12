@@ -1,4 +1,4 @@
-package FFAlearner.Test;
+package Test;
 
 /**
 *
@@ -26,18 +26,19 @@ package FFAlearner.Test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import FFAlearner.State;
+import FFAlearner.AutomataDeterminismException;
+import FFAlearner.DeterministicFrequencyFiniteAutomata;
+import FFAlearner.DeterministicFrequencyFiniteAutomataPrinter;
+import FFAlearner.SetToTreeShapedFFA;
 
-public class StateTest {
+public class SetToTreeShapedFFATest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -49,7 +50,6 @@ public class StateTest {
 
 	@Before
 	public void setUp() throws Exception {
-
 	}
 
 	@After
@@ -57,20 +57,30 @@ public class StateTest {
 	}
 
 	@Test
-	public void testStateAsTheKeyInHashMap() {
-		ArrayList<String> word1=new ArrayList<String>();
-		ArrayList<String> word2=new ArrayList<String>();
-		word1.add("A");
-		word2.add("A");
-		State s1=new State(word1);
-		State s2=new State(word2);
-		HashMap<State, Integer> stateValueMap =new HashMap<State, Integer>();
-		stateValueMap.put(s1, 1);
-		stateValueMap.put(s2, 2);
+	public void testSetToTreeShapedFFA() throws AutomataDeterminismException {
+		SetToTreeShapedFFA test=new SetToTreeShapedFFA();
+		test.useDefaultRawdata();
+		DeterministicFrequencyFiniteAutomata ffa=test.generateFPTA();			
+		assertTrue(ffa.isTreeShaped());
+
+		DeterministicFrequencyFiniteAutomataPrinter printer=new DeterministicFrequencyFiniteAutomataPrinter(ffa);
+		printer.printFrequencyFiniteAutomata();
+	}
+	
+	@Test
+	public void testSetFromFileToTreeShapedFFA() throws AutomataDeterminismException {
 		
-		assertTrue(stateValueMap.get(s1)==2);
-		
+		try {
+			SetToTreeShapedFFA test=new SetToTreeShapedFFA();
+			test.fromFile("/Users/yfc/Documents/workspace/learningFFA/result.txt");
+			DeterministicFrequencyFiniteAutomata ffa=test.generateFPTA();			
+			assertTrue(ffa.isTreeShaped());
+
+			DeterministicFrequencyFiniteAutomataPrinter printer=new DeterministicFrequencyFiniteAutomataPrinter(ffa);
+			printer.printFrequencyFiniteAutomata();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
-
 }

@@ -1,4 +1,4 @@
-package FFAlearner.Test;
+package Test;
 
 /**
 *
@@ -24,9 +24,8 @@ package FFAlearner.Test;
 * 
 */
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,10 +34,9 @@ import org.junit.Test;
 
 import FFAlearner.AutomataDeterminismException;
 import FFAlearner.DeterministicFrequencyFiniteAutomata;
-import FFAlearner.DeterministicFrequencyFiniteAutomataPrinter;
-import FFAlearner.SetToTreeShapedFFA;
+import FFAlearner.State;
 
-public class SetToTreeShapedFFATest {
+public class DeterministicFrequencyFiniteAutomataTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -56,31 +54,35 @@ public class SetToTreeShapedFFATest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testSetToTreeShapedFFA() throws AutomataDeterminismException {
-		SetToTreeShapedFFA test=new SetToTreeShapedFFA();
-		test.useDefaultRawdata();
-		DeterministicFrequencyFiniteAutomata ffa=test.generateFPTA();			
-		assertTrue(ffa.isTreeShaped());
-
-		DeterministicFrequencyFiniteAutomataPrinter printer=new DeterministicFrequencyFiniteAutomataPrinter(ffa);
-		printer.printFrequencyFiniteAutomata();
+	private State toState(String input){
+		ArrayList<String> ret =new ArrayList<String>();
+		for(int i=0;i<input.length();i++){
+			if(input.charAt(i)=='a'){
+				ret.add("1,1,1,1,1,1,1,1,1,1,1,2,2");
+			}else{
+				ret.add("1,1,1,1,1,1,1,1,1,1,1,1,1");
+			}
+		}
+		return new State(ret);
 	}
 	
 	@Test
-	public void testSetFromFileToTreeShapedFFA() throws AutomataDeterminismException {
-		
-		try {
-			SetToTreeShapedFFA test=new SetToTreeShapedFFA();
-			test.fromFile("/Users/yfc/Documents/workspace/learningFFA/result.txt");
-			DeterministicFrequencyFiniteAutomata ffa=test.generateFPTA();			
-			assertTrue(ffa.isTreeShaped());
-
-			DeterministicFrequencyFiniteAutomataPrinter printer=new DeterministicFrequencyFiniteAutomataPrinter(ffa);
-			printer.printFrequencyFiniteAutomata();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void testFFA() throws AutomataDeterminismException {
+		HashSet<String> alphabet=new HashSet<String>();
+		alphabet.add("1,1,1,1,1,1,1,1,1,1,1,2,2");
+		alphabet.add("1,1,1,1,1,1,1,1,1,1,1,1,1");
+		DeterministicFrequencyFiniteAutomata a=new DeterministicFrequencyFiniteAutomata(alphabet);
+		a.setStateFrequency(toState(""), 10);
+		a.setTransition(toState(""), "1,1,1,1,1,1,1,1,1,1,1,2,2", 
+				5, toState("a"));
+		a.setStateFrequency(toState("a"), 5);
+		a.setTransition(toState(""), "1,1,1,1,1,1,1,1,1,1,1,1,1", 
+				3, toState("b"));
+		a.setStateFrequency(toState("b"), 3);
+		a.setTransition(toState("a"), "1,1,1,1,1,1,1,1,1,1,1,2,2", 
+				3, toState("aa"));
+		a.setStateFrequency(toState("aa"), 3);
 		
 	}
+
 }

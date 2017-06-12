@@ -1,4 +1,4 @@
-package FFAlearner.Test;
+package Test;
 
 /**
 *
@@ -24,19 +24,20 @@ package FFAlearner.Test;
 * 
 */
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import FFAlearner.AutomataDeterminismException;
-import FFAlearner.DeterministicFrequencyFiniteAutomata;
 import FFAlearner.State;
 
-public class DeterministicFrequencyFiniteAutomataTest {
+public class StateTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -48,40 +49,27 @@ public class DeterministicFrequencyFiniteAutomataTest {
 
 	@Before
 	public void setUp() throws Exception {
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 
-	private State toState(String input){
-		ArrayList<String> ret =new ArrayList<String>();
-		for(int i=0;i<input.length();i++){
-			if(input.charAt(i)=='a'){
-				ret.add("1,1,1,1,1,1,1,1,1,1,1,2,2");
-			}else{
-				ret.add("1,1,1,1,1,1,1,1,1,1,1,1,1");
-			}
-		}
-		return new State(ret);
-	}
-	
 	@Test
-	public void testFFA() throws AutomataDeterminismException {
-		HashSet<String> alphabet=new HashSet<String>();
-		alphabet.add("1,1,1,1,1,1,1,1,1,1,1,2,2");
-		alphabet.add("1,1,1,1,1,1,1,1,1,1,1,1,1");
-		DeterministicFrequencyFiniteAutomata a=new DeterministicFrequencyFiniteAutomata(alphabet);
-		a.setStateFrequency(toState(""), 10);
-		a.setTransition(toState(""), "1,1,1,1,1,1,1,1,1,1,1,2,2", 
-				5, toState("a"));
-		a.setStateFrequency(toState("a"), 5);
-		a.setTransition(toState(""), "1,1,1,1,1,1,1,1,1,1,1,1,1", 
-				3, toState("b"));
-		a.setStateFrequency(toState("b"), 3);
-		a.setTransition(toState("a"), "1,1,1,1,1,1,1,1,1,1,1,2,2", 
-				3, toState("aa"));
-		a.setStateFrequency(toState("aa"), 3);
+	public void testStateAsTheKeyInHashMap() {
+		ArrayList<String> word1=new ArrayList<String>();
+		ArrayList<String> word2=new ArrayList<String>();
+		word1.add("A");
+		word2.add("A");
+		State s1=new State(word1);
+		State s2=new State(word2);
+		HashMap<State, Integer> stateValueMap =new HashMap<State, Integer>();
+		stateValueMap.put(s1, 1);
+		stateValueMap.put(s2, 2);
+		
+		assertTrue(stateValueMap.get(s1)==2);
+		
 		
 	}
 
