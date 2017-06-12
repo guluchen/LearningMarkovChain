@@ -1,4 +1,4 @@
-package Test;
+package learner;
 
 /**
 *
@@ -33,12 +33,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import FFAlearner.AutomataDeterminismException;
-import FFAlearner.DeterministicFrequencyFiniteAutomata;
-import FFAlearner.DeterministicFrequencyFiniteAutomataLearner;
-import FFAlearner.DeterministicFrequencyFiniteAutomataPrinter;
-import FFAlearner.SetToTreeShapedFFA;
-import FFAlearner.State;
+import learner.AutomataDeterminismException;
+import learner.DeterministicFrequencyFiniteAutomata;
+import learner.DeterministicFrequencyFiniteAutomataLearner;
+import learner.DeterministicFrequencyFiniteAutomataPrinter;
+import learner.SetToTreeShapedFFA;
+import learner.State;
 
 public class DeterministicFrequencyFiniteAutomataLearnerTest {
 
@@ -125,7 +125,7 @@ public class DeterministicFrequencyFiniteAutomataLearnerTest {
 	public void LearnerTest6() throws AutomataDeterminismException {
 		try {
 			SetToTreeShapedFFA test=new SetToTreeShapedFFA();
-			test.fromFile("/Users/yfc/Documents/workspace/learningFFA/result.txt");
+			test.fromFile("./result.txt");
 			DeterministicFrequencyFiniteAutomata fpta=test.generateFPTA();
 			DeterministicFrequencyFiniteAutomataLearner learner=new DeterministicFrequencyFiniteAutomataLearner(fpta, 25, 0.2f);
 			learner.runAlergia();

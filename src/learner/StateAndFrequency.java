@@ -1,4 +1,4 @@
-package FFAlearner;
+package learner;
 
 /**
 *
@@ -24,49 +24,54 @@ package FFAlearner;
 * 
 */
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-public class State{
-	private List<String> name;
+public class StateAndFrequency {
 	
-	public State(List<String> name){
-		this.name=new ArrayList<String>(name);
+	public State state;
+	public int frequency; 
+	
+	
+	static public State getState(Optional<StateAndFrequency> next) {
+		if(next.isPresent()){
+			return next.get().state;
+		}else{
+			return null;
+		}
 	}
+
+	static public int getFrequency(StateAndFrequency stateAndFrequency) {
+		if(stateAndFrequency!=null){
+			return stateAndFrequency.frequency;
+		}else{
+			return 0;
+		}
+	}	
 	
-	public State extend(String symbol){
-		ArrayList<String> nextName = new ArrayList<String>(name);
-		nextName.add(symbol);
-		return new State(nextName);
-	}
-	
-	public int hashCode(){
-		return name.hashCode();
-	}
-	
-	public static State initial(){
-		return new State(new ArrayList<String>());
-	}
-	
-	public String toString(){
-		return name.toString();
+	public StateAndFrequency(State state, int frequency){
+		this.state=state;
+		this.frequency=frequency;
 	}
 	
 	public boolean equals(Object obj){
-		if (obj instanceof State){
-			State other = (State)obj;
-			if(name.size()!=other.name.size()){
-				return false;
-			}else{
-				for(int i=0;i<name.size();i++){
-					if(!name.get(i).equals(other.name.get(i)))
-						return false;
-				}
-			}		
-			return true;
+		if (obj instanceof StateAndFrequency){
+			StateAndFrequency other = (StateAndFrequency)obj;
+			return state.equals(other.state) && frequency==other.frequency;
 		}else{
 			return false;
 		}
+	}
+
+	public static int getFrequency(Optional<StateAndFrequency> next) {
+		if(next.isPresent()){
+			return next.get().frequency;
+		}else{
+			return 0;
+		}
+	}
+	
+	public String toString(){
+		return "["+state+", "+frequency+"]";
 	}
 	
 }

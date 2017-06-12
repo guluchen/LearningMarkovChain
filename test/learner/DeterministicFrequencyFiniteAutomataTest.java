@@ -1,4 +1,4 @@
-package Test;
+package learner;
 
 /**
 *
@@ -32,9 +32,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import FFAlearner.AutomataDeterminismException;
-import FFAlearner.DeterministicFrequencyFiniteAutomata;
-import FFAlearner.State;
+import learner.AutomataDeterminismException;
+import learner.DeterministicFrequencyFiniteAutomata;
+import learner.State;
 
 public class DeterministicFrequencyFiniteAutomataTest {
 

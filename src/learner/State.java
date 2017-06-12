@@ -1,4 +1,4 @@
-package FFAlearner;
+package learner;
 
 /**
 *
@@ -24,41 +24,49 @@ package FFAlearner;
 * 
 */
 
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DeterministicTransitionMap {
+public class State{
+	private List<String> name;
 	
-	private HashMap<String, StateAndFrequency> symbolToStateAndFrequencyMap ;
-	
-	public DeterministicTransitionMap(){
-		symbolToStateAndFrequencyMap = new HashMap<String, StateAndFrequency>();
-	};
-	
-	public void set(String symbol, State state, int frequency) {
-		symbolToStateAndFrequencyMap.put(symbol, new StateAndFrequency(state,frequency));
-	}
-	public Optional<StateAndFrequency> get(String symbol){
-		return Optional.ofNullable(symbolToStateAndFrequencyMap.get(symbol));
+	public State(List<String> name){
+		this.name=new ArrayList<String>(name);
 	}
 	
-	public void remove(String symbol){
-		symbolToStateAndFrequencyMap.remove(symbol);
+	public State extend(String symbol){
+		ArrayList<String> nextName = new ArrayList<String>(name);
+		nextName.add(symbol);
+		return new State(nextName);
+	}
+	
+	public int hashCode(){
+		return name.hashCode();
+	}
+	
+	public static State initial(){
+		return new State(new ArrayList<String>());
 	}
 	
 	public String toString(){
-		String ret="[";
-		for(String symbol:symbolToStateAndFrequencyMap.keySet()){
-			StateAndFrequency stateAndFrequency=
-					symbolToStateAndFrequencyMap.get(symbol);
-			if(stateAndFrequency!=null){
-				State state=stateAndFrequency.state;
-				int frequency=stateAndFrequency.frequency;
-				ret+=("--("+symbol+","+frequency+")-->"+state+" ");
-			}
+		return name.toString();
+	}
+	
+	public boolean equals(Object obj){
+		if (obj instanceof State){
+			State other = (State)obj;
+			if(name.size()!=other.name.size()){
+				return false;
+			}else{
+				for(int i=0;i<name.size();i++){
+					if(!name.get(i).equals(other.name.get(i)))
+						return false;
+				}
+			}		
+			return true;
+		}else{
+			return false;
 		}
-		ret+="]";
-		return ret;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package FFAlearner;
+package learner;
 
 /**
 *
@@ -24,54 +24,12 @@ package FFAlearner;
 * 
 */
 
-import java.util.Optional;
+public class AutomataDeterminismException extends Exception {
 
-public class StateAndFrequency {
+	private static final long serialVersionUID = 8064797482114205999L;
 	
-	public State state;
-	public int frequency; 
-	
-	
-	static public State getState(Optional<StateAndFrequency> next) {
-		if(next.isPresent()){
-			return next.get().state;
-		}else{
-			return null;
-		}
-	}
-
-	static public int getFrequency(StateAndFrequency stateAndFrequency) {
-		if(stateAndFrequency!=null){
-			return stateAndFrequency.frequency;
-		}else{
-			return 0;
-		}
-	}	
-	
-	public StateAndFrequency(State state, int frequency){
-		this.state=state;
-		this.frequency=frequency;
-	}
-	
-	public boolean equals(Object obj){
-		if (obj instanceof StateAndFrequency){
-			StateAndFrequency other = (StateAndFrequency)obj;
-			return state.equals(other.state) && frequency==other.frequency;
-		}else{
-			return false;
-		}
-	}
-
-	public static int getFrequency(Optional<StateAndFrequency> next) {
-		if(next.isPresent()){
-			return next.get().frequency;
-		}else{
-			return 0;
-		}
-	}
-	
-	public String toString(){
-		return "["+state+", "+frequency+"]";
+	public AutomataDeterminismException(State source, String symbol){
+		super("The transition from "+source+ " to a different destination via "+symbol+" is already there.");
 	}
 	
 }

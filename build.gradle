@@ -14,12 +14,12 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDirs = ["src/FFAlearner"]
+            srcDirs = ["src/learner"]
         }
     }
     test {
         java {
-            srcDirs = ["test"]
+            srcDirs = ["test/learner"]
         }
     }
 }

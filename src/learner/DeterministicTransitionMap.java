@@ -1,4 +1,4 @@
-package FFAlearner;
+package learner;
 
 /**
 *
@@ -24,12 +24,41 @@ package FFAlearner;
 * 
 */
 
-public class AutomataDeterminismException extends Exception {
+import java.util.HashMap;
+import java.util.Optional;
 
-	private static final long serialVersionUID = 8064797482114205999L;
+public class DeterministicTransitionMap {
 	
-	public AutomataDeterminismException(State source, String symbol){
-		super("The transition from "+source+ " to a different destination via "+symbol+" is already there.");
+	private HashMap<String, StateAndFrequency> symbolToStateAndFrequencyMap ;
+	
+	public DeterministicTransitionMap(){
+		symbolToStateAndFrequencyMap = new HashMap<String, StateAndFrequency>();
+	};
+	
+	public void set(String symbol, State state, int frequency) {
+		symbolToStateAndFrequencyMap.put(symbol, new StateAndFrequency(state,frequency));
+	}
+	public Optional<StateAndFrequency> get(String symbol){
+		return Optional.ofNullable(symbolToStateAndFrequencyMap.get(symbol));
+	}
+	
+	public void remove(String symbol){
+		symbolToStateAndFrequencyMap.remove(symbol);
+	}
+	
+	public String toString(){
+		String ret="[";
+		for(String symbol:symbolToStateAndFrequencyMap.keySet()){
+			StateAndFrequency stateAndFrequency=
+					symbolToStateAndFrequencyMap.get(symbol);
+			if(stateAndFrequency!=null){
+				State state=stateAndFrequency.state;
+				int frequency=stateAndFrequency.frequency;
+				ret+=("--("+symbol+","+frequency+")-->"+state+" ");
+			}
+		}
+		ret+="]";
+		return ret;
 	}
 	
 }
