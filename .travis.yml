@@ -1,14 +1,12 @@
-language: java
+language: 
+  - java
 
 jdk:
   - oraclejdk8
   
-before_install:
- - gradle wrapper
- - chmod +x gradlew  
 script:
-  - ./gradlew check
-  - ./gradlew codeCoverageReport
+  - gradle jacocoTestReport
+  
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   
