@@ -120,8 +120,7 @@ public class DeterministicFrequencyFiniteAutomataLearnerTest {
 		String ret=printer.toString();
 		assertTrue(ret.hashCode()==1217289335);
 	}
-	
-	@Test	
+		
 	public void LearnerTest6() throws AutomataDeterminismException {
 		try {
 			SetToTreeShapedFFA test=new SetToTreeShapedFFA();

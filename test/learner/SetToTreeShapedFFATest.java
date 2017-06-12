@@ -67,7 +67,6 @@ public class SetToTreeShapedFFATest {
 		printer.printFrequencyFiniteAutomata();
 	}
 	
-	@Test
 	public void testSetFromFileToTreeShapedFFA() throws AutomataDeterminismException {
 		
 		try {
