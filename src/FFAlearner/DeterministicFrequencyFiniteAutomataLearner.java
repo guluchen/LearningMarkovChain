@@ -62,7 +62,7 @@ public class DeterministicFrequencyFiniteAutomataLearner {
 		}
 	}
 
-	protected State getNextBlueState() {
+	public State getNextBlueState() {
 		while(!blue.isEmpty()){
 			State qb=blue.remove();
 			int freq_qb=ffa.getStateFrequency(qb)+getOutgoingTransitionFrequency(qb);
@@ -72,7 +72,7 @@ public class DeterministicFrequencyFiniteAutomataLearner {
 		return null;
 	}
 
-	protected void mergeOrBecomeRed(State qb) throws AutomataDeterminismException {
+	public void mergeOrBecomeRed(State qb) throws AutomataDeterminismException {
 		boolean compatible_pair_exist=false;
 		for(State qr:red){
 			if(alergia_compatible(qr,qb)){
@@ -85,7 +85,7 @@ public class DeterministicFrequencyFiniteAutomataLearner {
 			red.add(qb);
 	}
 
-	protected void updateBlueStates() {
+	public void updateBlueStates() {
 		blue.clear();
 		for(State qu:red){
 			for(String a:ffa.getAlphabet()){
