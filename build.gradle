@@ -35,3 +35,8 @@ jacocoTestReport {
         html.enabled false
     }
 }
+
+task execute(type:JavaExec) {
+   main = "learner.Main"
+   classpath = sourceSets.main.runtimeClasspath
+}
