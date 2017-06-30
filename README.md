@@ -5,4 +5,10 @@ Compile:
 type "gradle"
 
 Run Tests:
-type "grale test"
+type "gradle test"
+
+Run the leanrer using the data in results.txt
+type "gradle execute"
+
+You can find the Gradle Build tool here http://gradle.org
+
