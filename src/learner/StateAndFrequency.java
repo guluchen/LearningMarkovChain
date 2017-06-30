@@ -63,7 +63,7 @@ public class StateAndFrequency {
   }
 
   public int hashCode(){
-    return state.hashCode()+37*frequency;
+    return state.hashCode()+31*frequency;
   }
 
   public static int getFrequency(Optional<StateAndFrequency> next) {

@@ -59,9 +59,9 @@ public class State{
         return false;
       }else{
         for(int i=0;i<name.size();i++){
-          if(name.get(i).hashCode()!=other.name.get(i).hashCode())
-            if(!name.get(i).equals(other.name.get(i)))
-              return false;
+          if(!name.get(i).equals(other.name.get(i))){
+            return false;
+          }
         }
       }		
       return true;
