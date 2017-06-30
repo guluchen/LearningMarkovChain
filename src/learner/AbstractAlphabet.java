@@ -118,7 +118,7 @@ public class AbstractAlphabet {
         + lane + ","
         + action;
   }
-  
+
   public void printAlphabet() {
     System.out.println("(lff,lf,l,lb,ff,f,b,rff,rf,r,rb,lane,action)="
         + lff + ","
