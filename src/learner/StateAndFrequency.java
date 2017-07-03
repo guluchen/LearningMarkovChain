@@ -51,7 +51,6 @@ public class StateAndFrequency {
   public StateAndFrequency(State state, int frequency){
     this.state=state;
     this.frequency=frequency;
-    //tests
   }
 
   public boolean equals(Object obj){
