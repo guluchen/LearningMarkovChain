@@ -9,7 +9,7 @@ public class Main {
 
     SetToTreeShapedFFA test=new SetToTreeShapedFFA();
     test.fromFile("./result.txt");
-    DeterministicFrequencyFiniteAutomata fpta=test.generateFPTA();
+     DeterministicFrequencyFiniteAutomata fpta=test.generateFPTA();
     DeterministicFrequencyFiniteAutomataLearner learner=new DeterministicFrequencyFiniteAutomataLearner(fpta, 25, 0.2f);
     learner.runAlergia();
     DeterministicFrequencyFiniteAutomata result=learner.getFFA();
