@@ -68,7 +68,7 @@ public class StateTest {
     stateValueMap.put(s1, 1);
     stateValueMap.put(s2, 2);
 
-    assertTrue(stateValueMap.get(s1)==3);
+    assertTrue(stateValueMap.get(s1)==2);
 
 
   }
