@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/guluchen/LearningMarkovChain.svg?branch=master)](https://travis-ci.org/guluchen/LearningMarkovChain)|[![Coverage](https://codecov.io/gh/guluchen/LearningMarkovChain/graph/badge.svg)](https://codecov.io/gh/guluchen/LearningMarkovChain)
+[![Build Status](https://travis-ci.org/guluchen/LearningMarkovChain.svg?branch=master)](https://travis-ci.org/guluchen/LearningMarkovChain)[![Coverage](https://codecov.io/gh/guluchen/LearningMarkovChain/graph/badge.svg)](https://codecov.io/gh/guluchen/LearningMarkovChain)
 
 
 
