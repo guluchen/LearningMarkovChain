@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/guluchen/LearningMarkovChain.svg?branch=master)](https://travis-ci.org/guluchen/LearningMarkovChain.svg?branch=master)
+
 # LearningMarkovChain
 An implementation of the Alergia learning algorithm 
 
