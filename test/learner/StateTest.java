@@ -82,7 +82,7 @@ public class StateTest {
 	  java.util.Collections.sort(input);
 	  
 	  for(int i=0;i<input.size()-1;i++) {
-		  assertTrue(input.get(i)==input.get(i+1));
+		  assertTrue(input.get(i)<=input.get(i+1));
 	  }
 	  
   
