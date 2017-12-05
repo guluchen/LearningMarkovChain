@@ -78,7 +78,7 @@ public class DeterministicFrequencyFiniteAutomataLearnerTest {
     test.useDefaultRawdata();
     DeterministicFrequencyFiniteAutomata fpta=test.generateFPTA();
     String result=getAlergiaResultForkIterations(fpta,1);
-    assertTrue(result.hashCode()==-298444604);
+    assertTrue(result.hashCode()==-98444604);
   }
 
   @Test
