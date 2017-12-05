@@ -35,6 +35,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
+
 import learner.State;
 
 public class StateTest {
@@ -69,8 +71,23 @@ public class StateTest {
     stateValueMap.put(s2, 2);
 
     assertTrue(stateValueMap.get(s1)==2);
-
-
+  }
+  
+  @Test
+  public void testSorting() {
+	  ArrayList<Integer> input=new ArrayList<>();
+	  input.add(4);
+	  input.add(2);
+	  input.add(6);
+	  input.add(5);
+	  input.add(3);
+	  java.util.Collections.sort(input);
+	  
+	  for(int i=0;i<input.size()-1;i++) {
+		  assertTrue(input.get(i)==input.get(i+1));
+	  }
+	  
+  
   }
 
 }
