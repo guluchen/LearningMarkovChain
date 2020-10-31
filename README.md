@@ -3,8 +3,7 @@
 
 
 # LearningMarkovChain
-An implementation of the Alergia learning algorithm 
-
+Markove Chain Learning
 Compile:
 type "gradle"
 
